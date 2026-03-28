@@ -242,6 +242,70 @@
       gap: 14px;
     }
 
+    .knowledge-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .knowledge-card {
+      background: #f6f7fb;
+      color: #14213d;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+    }
+
+    .knowledge-header {
+      padding: 16px 20px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: white;
+    }
+
+    .knowledge-header.blue { background: #1f6feb; }
+    .knowledge-header.yellow { background: #f4b400; color: #14213d; }
+    .knowledge-header.green { background: #1f8f5a; }
+    .knowledge-header.cyan { background: #22b8d6; }
+
+    .knowledge-body {
+      padding: 22px 20px 20px;
+    }
+
+    .knowledge-columns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .knowledge-body h4 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    .knowledge-body ul {
+      margin: 0;
+      padding-left: 22px;
+      line-height: 1.65;
+    }
+
+    .language-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .language-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 1.02rem;
+    }
+
+    .language-row strong {
+      font-weight: 800;
+    }
+
     .project {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -271,9 +335,15 @@
       .grid-2,
       .projects,
       .quick-stats,
-      .skills {
+      .skills,
+      .knowledge-grid,
+      .knowledge-columns {
         grid-template-columns: 1fr;
       }
+
+      .hero-card { padding: 28px; }
+      .nav-inner { align-items: flex-start; }
+    }
 
       .hero-card { padding: 28px; }
       .nav-inner { align-items: flex-start; }
@@ -413,6 +483,96 @@
       </div>
     </section>
 
+    <section id="knowledge">
+      <h2 class="section-title">Knowledge Areas</h2>
+      <div class="knowledge-grid">
+        <article class="knowledge-card">
+          <div class="knowledge-header blue">Programming & Data Science</div>
+          <div class="knowledge-body">
+            <h4>Languages</h4>
+            <ul>
+              <li>R, Python, Linux, SQL</li>
+            </ul>
+            <h4>Libraries</h4>
+            <ul>
+              <li><strong>R:</strong> dplyr, data.table, stats, Bioconductor</li>
+              <li><strong>Python:</strong> pandas, NumPy, scikit-learn</li>
+            </ul>
+            <h4>Visualization</h4>
+            <ul>
+              <li>ggplot2, R Shiny, matplotlib</li>
+            </ul>
+            <h4>Tools</h4>
+            <ul>
+              <li>GitHub, Copilot, Excel, PowerPoint, Word</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="knowledge-card">
+          <div class="knowledge-header yellow">Machine Learning & Statistics</div>
+          <div class="knowledge-body">
+            <h4>Modeling</h4>
+            <ul>
+              <li>GLM, clustering, PCA, SVM, Random Forest</li>
+              <li>t-SNE, UMAP</li>
+              <li>Neural networks and autoencoders</li>
+            </ul>
+            <h4>Methods</h4>
+            <ul>
+              <li>Bayesian inference and hypothesis testing</li>
+              <li>Parametric and non-parametric tests</li>
+              <li>Model validation and predictive modeling</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="knowledge-card" style="grid-column: span 1;">
+          <div class="knowledge-header green">Bioinformatics & Genomics</div>
+          <div class="knowledge-body">
+            <div class="knowledge-columns">
+              <div>
+                <h4>Cancer genomics</h4>
+                <ul>
+                  <li>NGS data</li>
+                  <li>Germline and somatic variants</li>
+                  <li>Driver vs passenger mutations</li>
+                  <li>Selection and phylogeny</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Genomic analysis</h4>
+                <ul>
+                  <li>BAM files, QC, alignment</li>
+                  <li>Variant calling and annotation</li>
+                  <li>Gene ontology</li>
+                  <li>Differential expression</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Clinical tools</h4>
+                <ul>
+                  <li>Survival analysis and Cox regression</li>
+                  <li>Ensembl, COSMIC, BLAST</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="knowledge-card">
+          <div class="knowledge-header cyan">Languages</div>
+          <div class="knowledge-body">
+            <div class="language-list">
+              <div class="language-row"><span>Spanish</span><strong>Native</strong></div>
+              <div class="language-row"><span>English</span><strong>Professional</strong></div>
+              <div class="language-row"><span>Italian</span><strong>Basic</strong></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section id="skills">
       <div class="card">
         <h2 class="section-title">Core Skills</h2>
@@ -493,4 +653,3 @@
   </footer>
 </body>
 </html>
-
