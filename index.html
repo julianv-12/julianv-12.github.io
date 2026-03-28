@@ -1,106 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Julián Vitali</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Julián Vitali | Bioinformatics Analyst</title>
+  <meta name="description" content="Bioinformatics Analyst specializing in NGS, RNA-seq, pipeline development, and computational biology." />
   <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121935;
+      --soft: #1a2448;
+      --text: #e7ecff;
+      --muted: #a9b3d9;
+      --accent: #7aa2ff;
+      --accent-2: #6ee7d8;
+      --border: rgba(255,255,255,0.08);
+      --max: 1020px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: auto;
-      line-height: 1.6;
-      color: #333;
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #0a1020 0%, #0e1530 100%);
+      color: var(--text);
+      line-height: 1.65;
     }
-    header {
-      text-align: center;
-      margin-top: 40px;
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
     }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(10, 16, 32, 0.78);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 72px 0 36px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, rgba(122,162,255,0.12), rgba(110,231,216,0.06));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 42px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+
+    .eyebrow {
+      color: var(--accent-2);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.82rem;
+      margin-bottom: 12px;
+    }
+
     h1 {
-      font-size: 36px;
+      margin: 0;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
     }
-    h2 {
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 5px;
-      margin-top: 40px;
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      margin-top: 16px;
+      max-width: 760px;
     }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #161f42;
+      color: white;
+      font-weight: 600;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), #5f7dff);
+      color: #081124;
+      border: none;
+    }
+
+    .quick-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
     section {
-      margin-bottom: 30px;
+      padding: 26px 0;
     }
-    a {
-      color: #007acc;
-      text-decoration: none;
+
+    .section-title {
+      font-size: 1.6rem;
+      margin: 0 0 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-text {
+      color: var(--muted);
+      max-width: 820px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 24px;
+    }
+
+    .timeline-item + .timeline-item {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .timeline-role {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .timeline-role h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    ul.clean {
+      margin: 10px 0 0 0;
+      padding-left: 18px;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .skill-box {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .skill-box h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .project {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .project h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .footer {
+      padding: 30px 0 60px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 860px) {
+      .grid-2,
+      .projects,
+      .quick-stats,
+      .skills {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card { padding: 28px; }
+      .nav-inner { align-items: flex-start; }
     }
   </style>
 </head>
-
 <body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Julián Vitali</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-<header>
-  <h1>Julián Vitali</h1>
-  <p>Bioinformatics Analyst | NGS | RNA-seq | Nextflow | Python</p>
-</header>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="eyebrow">Bioinformatics • Computational Biology • NGS</div>
+        <h1>Bioinformatics Analyst building genomic pipelines and turning biological data into useful insights.</h1>
+        <p class="subtitle">
+          Biotechnologist specialized in bioinformatics with hands-on experience in NGS analysis, RNA-seq, variant calling,
+          and workflow development using Nextflow, Bash, Python, and R. Based in Barcelona.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://github.com/julianv-12" target="_blank" rel="noreferrer">View GitHub</a>
+          <a class="btn" href="mailto:julianvitali1212@gmail.com">Email me</a>
+          <a class="btn" href="#projects">See projects</a>
+        </div>
+        <div class="quick-stats">
+          <div class="stat"><strong>NGS</strong><span>QC, alignment, variant calling</span></div>
+          <div class="stat"><strong>Nextflow</strong><span>Pipeline automation</span></div>
+          <div class="stat"><strong>Python & R</strong><span>Data analysis and scripting</span></div>
+          <div class="stat"><strong>Barcelona</strong><span>Clinical + industrial experience</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<section>
-  <h2>About</h2>
-  <p>
-    Biotechnologist specialized in bioinformatics with experience in NGS data analysis,
-    RNA-seq, and pipeline development using Nextflow, Bash, and Python.
-    Strong background in genomics, biostatistics, and machine learning applied to biomedical data.
-  </p>
-</section>
+  <main class="container">
+    <section id="about">
+      <div class="grid-2">
+        <div class="card">
+          <h2 class="section-title">About</h2>
+          <p class="section-text">
+            I am a biotechnologist specialized in bioinformatics with experience across clinical, research, and industrial settings.
+            My work combines molecular biology knowledge with computational analysis to design pipelines, analyze sequencing data,
+            and support translational or research-driven projects.
+          </p>
+          <p class="section-text">
+            I am especially interested in genomics, RNA-seq, automation of reproducible workflows, and statistical approaches for biomedical data.
+          </p>
+        </div>
+        <div class="card">
+          <h2 class="section-title">Highlights</h2>
+          <div class="tags">
+            <span class="tag">NGS analysis</span>
+            <span class="tag">RNA-seq</span>
+            <span class="tag">Variant calling</span>
+            <span class="tag">Nextflow</span>
+            <span class="tag">Bash</span>
+            <span class="tag">Python</span>
+            <span class="tag">R</span>
+            <span class="tag">Biostatistics</span>
+            <span class="tag">Machine learning</span>
+            <span class="tag">Clinical data</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section>
-  <h2>Experience</h2>
+    <section id="experience">
+      <div class="card">
+        <h2 class="section-title">Experience</h2>
 
-  <h3>Bioinformatics Internship — Hospital Italiano</h3>
-  <ul>
-    <li>Designed automated NGS pipeline for ALS using Nextflow and Bash</li>
-    <li>Performed QC, alignment, variant calling and annotation</li>
-    <li>Tools: FastQC, Trimmomatic, BWA-MEM, GATK, ANNOVAR</li>
-  </ul>
+        <div class="timeline-item">
+          <div class="timeline-role">
+            <h3>Analytical Development Scientist · Leanbio Pro</h3>
+            <div class="meta">Barcelona · Jun 2025 – Present</div>
+          </div>
+          <ul class="clean">
+            <li>Development and validation of analytical methods in a GMP environment.</li>
+            <li>Statistical analysis of experimental data and preparation of technical reports.</li>
+            <li>Optimization of analytical procedures and troubleshooting of deviations.</li>
+          </ul>
+        </div>
 
-  <h3>Analytical Development Scientist — Leanbio Pro</h3>
-  <ul>
-    <li>Development and validation of analytical methods</li>
-    <li>Statistical analysis of experimental data</li>
-    <li>Optimization of analytical procedures</li>
-  </ul>
+        <div class="timeline-item">
+          <div class="timeline-role">
+            <h3>Bioinformatics Intern · Hospital Italiano</h3>
+            <div class="meta">Buenos Aires · Aug 2024 – Apr 2025</div>
+          </div>
+          <ul class="clean">
+            <li>Designed and implemented an automated NGS pipeline for ALS using Nextflow and Bash.</li>
+            <li>Performed QC, alignment, variant calling, and annotation on patient sequencing data.</li>
+            <li>Worked with FastQC, Trimmomatic, BWA-MEM, GATK, and ANNOVAR.</li>
+          </ul>
+        </div>
 
-</section>
+        <div class="timeline-item">
+          <div class="timeline-role">
+            <h3>Field Service Engineer · Agilent Technologies</h3>
+            <div class="meta">Barcelona · Feb 2023 – Jul 2023</div>
+          </div>
+          <ul class="clean">
+            <li>Diagnostics, preventive maintenance, and repair of HPLC systems in laboratory environments.</li>
+            <li>Generated technical reports and participated in specialized trainings.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-<section>
-  <h2>Projects</h2>
+    <section id="projects">
+      <h2 class="section-title">Selected Projects</h2>
+      <div class="projects">
+        <article class="project">
+          <h3>Genomics Pipeline TFM</h3>
+          <p>Pipeline-oriented genomics work aligned with your bioinformatics profile. This should be your featured card.</p>
+          <a href="https://github.com/julianv-12/genomics_pipeline_TFM" target="_blank" rel="noreferrer">Open repository →</a>
+        </article>
+        <article class="project">
+          <h3>Breast Cancer Classification</h3>
+          <p>Machine learning project focused on classification problems in biomedical data.</p>
+          <a href="https://github.com/julianv-12" target="_blank" rel="noreferrer">View on GitHub →</a>
+        </article>
+        <article class="project">
+          <h3>Diabetes Risk Analysis</h3>
+          <p>Data analysis and predictive modeling project showing statistics and applied ML skills.</p>
+          <a href="https://github.com/julianv-12" target="_blank" rel="noreferrer">View on GitHub →</a>
+        </article>
+      </div>
+    </section>
 
-  <p>
-    <b>Genomics Pipeline (TFM)</b> —
-    <a href="https://github.com/julianv-12">GitHub</a>
-  </p>
+    <section id="skills">
+      <div class="card">
+        <h2 class="section-title">Core Skills</h2>
+        <div class="skills">
+          <div class="skill-box">
+            <h3>Bioinformatics & Omics</h3>
+            <div class="tags">
+              <span class="tag">NGS</span>
+              <span class="tag">RNA-seq</span>
+              <span class="tag">scRNA-seq</span>
+              <span class="tag">Variant calling</span>
+            </div>
+          </div>
+          <div class="skill-box">
+            <h3>Workflow & Systems</h3>
+            <div class="tags">
+              <span class="tag">Nextflow</span>
+              <span class="tag">Bash</span>
+              <span class="tag">Linux</span>
+              <span class="tag">SQL</span>
+            </div>
+          </div>
+          <div class="skill-box">
+            <h3>Programming</h3>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">R</span>
+              <span class="tag">Data analysis</span>
+              <span class="tag">Automation</span>
+            </div>
+          </div>
+          <div class="skill-box">
+            <h3>Statistics & ML</h3>
+            <div class="tags">
+              <span class="tag">Differential expression</span>
+              <span class="tag">PCA</span>
+              <span class="tag">Clustering</span>
+              <span class="tag">Random Forest</span>
+              <span class="tag">k-NN</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <p>
-    <b>Breast Cancer Classification</b> — Machine learning project for tumor classification
-  </p>
+    <section id="education">
+      <div class="card">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline-item">
+          <div class="timeline-role">
+            <h3>Master’s in Bioinformatics and Biostatistics</h3>
+            <div class="meta">UOC / University of Barcelona · 2023 – 2025</div>
+          </div>
+          <p class="section-text">Biomedical data analysis, applied statistics, scripting in R and Python, Linux systems, and development of bioinformatics pipelines.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-role">
+            <h3>Bachelor’s Degree in Biotechnology</h3>
+            <div class="meta">National University of Córdoba · 2015 – 2021</div>
+          </div>
+          <p class="section-text">Training in molecular biology, microbiology, biochemistry, genetics, analytical techniques, and industrial biotechnology processes.</p>
+        </div>
+      </div>
+    </section>
 
-  <p>
-    <b>Diabetes Risk Analysis</b> — Predictive modeling and data analysis
-  </p>
+    <section id="contact">
+      <div class="card">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-text">Barcelona, Spain</p>
+        <p><a href="mailto:julianvitali1212@gmail.com">julianvitali1212@gmail.com</a></p>
+        <p><a href="https://github.com/julianv-12" target="_blank" rel="noreferrer">GitHub</a></p>
+      </div>
+    </section>
+  </main>
 
-</section>
-
-<section>
-  <h2>Skills</h2>
-  <ul>
-    <li>NGS, RNA-seq, variant calling</li>
-    <li>Nextflow, Bash, Linux</li>
-    <li>Python, R</li>
-    <li>Machine Learning: PCA, clustering, Random Forest, k-NN</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Contact</h2>
-  <p>Email: julianvitali1212@gmail.com</p>
-  <p>GitHub: <a href="https://github.com/julianv-12">github.com/julianv-12</a></p>
-</section>
-
+  <footer class="footer">
+    © 2026 Julián Vitali · Built with HTML and CSS on GitHub Pages
+  </footer>
 </body>
 </html>
+
